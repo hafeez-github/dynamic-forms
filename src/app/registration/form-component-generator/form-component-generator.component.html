@@ -1,0 +1,48 @@
+<div>
+    <ng-container [ngSwitch]="question.type">
+        <ng-container *ngSwitchCase="questionType.text">
+            <div class="form-group">
+                <label class="form-label" for="question-{{id}}">{{ question.description }}</label> <br>
+                <input class="form-control" type="text" id="question-{{id}}" [formControl]="questionControl">
+            </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="questionType.dropdown">
+            <div class="form-group">
+                <label class="form-label" for="question-{{id}}">{{ question.description }}</label> <br>
+                <select class="form-select" id="question-{{id}}" [formControl]="questionControl">
+                    <option *ngFor="let option of question.options" [value]="option">{{option}}</option>
+                </select>
+            </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="questionType.checkbox">
+            <div class="form-group">
+                <label class="form-label" for="question-{{id}}">{{ question.description }}</label> <br>
+                <div class="form-control" id="question-{{id}}">
+                    <ng-container *ngFor="let option of question.options">
+                        <div class="form-check">
+                            <input name="question-{{id}}" class="form-check-input" type="checkbox" [value]="option" [formControl]="questionControl"> 
+                            <label class="form-check-label">{{option}}</label>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="questionType.radio">
+            <div class="form-group">
+                <label for="question-{{id}}">{{ question.description }}</label> <br>
+                <div class="form-control" id="question-{{id}}">
+                    <ng-container *ngFor="let option of question.options">
+                        <div class="form-check">
+                            <input name="question-{{id}}" id="question-{{id}}" class="form-check-input" type="radio" [value]="option" [formControl]="questionControl"> 
+                            <label class="form-check-label" for="question-{{id}}">{{option}}</label>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <br>
+</div>

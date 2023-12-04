@@ -1,0 +1,32 @@
+<form class="p-3" [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+    <ng-container *ngFor="let question of questions; let i = index">
+        <app-form-component-generator [question]="question" [id]="i" [mainForm]="mainForm"></app-form-component-generator>
+    </ng-container>
+
+    <div class="form-group">
+        <label class="form-label" for="motivation">Do you have any motivation in your life?</label>
+        <select class="form-select" id="motivation" formControlName="motivation">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <br>
+    </div>
+
+    <ng-container *ngIf="mainForm.controls['motivation'].value=='yes'">
+        <div class="form-group">
+            <label class="form-label" for="motivation-description">Tell us more about your motivation</label>
+            <input class="form-control" type="text" id="motivation-description" formControlName="motivation-description">
+            <br>
+        </div>
+    </ng-container>
+
+    <div class="form-group">
+        <label class="form-label" for="hobby">Tell us about your hobbies</label>
+        <textarea class="form-control" id="hobby" rows="4" formControlName="hobby"> </textarea>
+        <br>
+    </div>
+
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
